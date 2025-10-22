@@ -6,8 +6,9 @@ L’objectif est de centraliser ces épreuves pour permettre à tous les élève
 Hack Ton Lycée est un événement de cybersécurité éducatif, organisé par la région et [Yogosha](https://yogosha.com) pour les lycéens francophones vivant en Ile-De-France.
 
 ## Contenu du dépôt
-HackTonLycee_1/ → challenges de la 1ère édition
-HackTonLycee_2/ → challenges de la 2ème édition
+- HackTonLycee_1/ → challenges de la 1ère édition
+- HackTonLycee_2/ → challenges de la 2ème édition
+  
 (Certains CTF peuvent être incomplets ou manquants : voir la section Contribuer)
 
 ## ⚠️ Avertissement
@@ -21,4 +22,5 @@ Si tu remarques :
 - un CTF manquant,
 - un challenge incomplet ou corrompu,
 - une solution ou un write-up à ajouter,
+  
 n’hésite pas à ouvrir une pull request ou une issue.
