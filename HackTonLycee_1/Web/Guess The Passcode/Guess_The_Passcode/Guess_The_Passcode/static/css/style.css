@@ -1,0 +1,232 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(#3B3B3B, #131313);
+}
+
+
+/*==== basic styles ====*/
+
+p, button, .letters, h2 {
+  font-family: sans-serif;
+  margin-top: 0;
+  color: white;
+}
+
+span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid white;
+}
+
+p {
+  font-weight: lighter;
+  letter-spacing: .15px;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: inline-block;
+  margin: 5px;
+  background-color: rgba(213,213,213,.1);
+  font-size: 16px;
+  transition: background-color 1s;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  background-color: rgba(213, 213, 213, .7);
+}
+
+button:focus {
+  outline: none;
+}
+
+/*==== classes ====*/
+
+.outer {
+  background-color: white;
+  margin: 75px auto;
+  width: 300px;
+  height: 510px;
+  border: 2.5px solid #A5A3A3;
+  border-bottom: .5px solid black;
+  border-radius: 20px;
+}
+
+.before {
+  background: linear-gradient(to bottom, aqua, #FEF9B9);
+  width: 290px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.screen {
+  height: 415px;
+  width: 290px;
+  margin: 45px auto;
+  background: rgba(0,0,0,.75);
+  border-radius: 5px;
+  border: .5px solid black;
+}
+
+.touch {
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.spanContainer {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: '1 2 3 '
+                       '4 5 6'
+                       '7 8 9'
+                       '. 0 .';
+  grid-gap: 10px;
+  margin: 10px 50px;  
+}
+
+.emergency, .cancel {
+  font-size: 11px;
+  position: relative;
+  transition: color .5s;
+  color: white;
+  display: inline-block;
+  margin-top: 15px;
+  bottom: 7px;
+}
+
+.emergency { 
+  left: 45px;
+}
+
+.cancel {
+  left: 120px;
+}
+
+.emergency:hover, .cancel:hover {
+  cursor: pointer;
+}
+
+.emergency:active, .cancel:active {
+  color: #777;
+  transition: color .5s;
+}
+
+.letters {
+  font-size: 7px;
+}
+
+.home {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  left: 124px;
+  top: 4px;
+  border: 1.5px solid rgb(101, 101, 101);
+  border-radius: 50%;
+  background-color: #ECECEC;
+}
+
+.camera {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  background-color: black;
+  border-radius: 50%;
+  position: relative;
+  bottom: 84px;
+  left: 45px;
+  border: 1px solid grey;
+}
+
+.speaker {
+  width: 50px;
+  height: 4px;
+  background-color: black;
+  border-radius: 20%;
+  position: relative;
+  left: 120px;
+  bottom: 97px;
+  border: 1px solid grey;
+}
+
+
+.zero {
+  display: block;
+  position: relative;
+  bottom: 7px;
+  left: 116px;
+}
+
+.percent, .battery {
+  color: white;
+  position: relative;
+}
+
+.battery {
+  width: 50px;
+  left: 264px;
+  bottom: 50px;
+  font-size: 13px;
+}
+
+.percent {
+  font-size: 11px;
+  left: 236px;
+  bottom: 23px;
+}
+
+.wifi, .lock {
+  color: white;
+  font-size: 10px;
+}
+
+.atnt {
+  font-size: 10px;
+  display: inline-block;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.lock {
+  position: relative;
+  left: 85px;
+  top: 1px;
+}
+
+#phone {
+  display: none;             align-items: center;       justify-content: center;
+  background-color: #4ECC48;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;  
+  position: relative;
+  bottom: 12px;
+  right: 6px; 
+}
+
+.powerBtn {
+  display: inline-block;
+  width: 5px;
+  height: 35px;
+  background-color: #A5A3A3;
+  border-radius: 50px;
+  position: relative;
+  bottom: 320px;
+  left: 295px;
+}

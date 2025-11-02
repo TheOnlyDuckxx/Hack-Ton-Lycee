@@ -16,7 +16,7 @@ Hack Ton Lycée est un événement de cybersécurité éducatif, organisé par l
 > Ce dépôt n’a qu’un but **pédagogique et archivistique** : conserver et partager les CTF pour que d’autres puissent les étudier.  
 > Tous les droits reviennent à leurs créateurs et organisateurs respectifs.
 
-## 🤝 Contribuer
+## Contribuer
 Les contributions sont les bienvenues !
 Si tu remarques :
 - un CTF manquant,

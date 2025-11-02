@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - iPhone (interactive)</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id='first'>
+  <div class="outer">
+    <div class="before">
+    <div class='screen'>
+      <p class="atnt">AT&T</p>
+      <i class="fa fa-wifi wifi" aria-hidden="true"></i>
+      <i class="fa fa-lock lock" aria-hidden="true"></i>
+      <p class='percent'>98%</p>
+      <i class="fa fa-battery-full battery" aria-hidden="true"></i>
+      <div class='camera'></div>
+      <div class='speaker'></div>
+      <p class="touch">Touch ID or Enter Passcode</p>
+
+      <div class="spanContainer">
+        <span id='sOne'></span>
+        <span id='sTwo'></span>
+        <span id='sThree'></span>
+        <span id='sFour'></span>
+      </div>
+
+      <div id='parent'>
+        <div class="grid">
+          <button class='1'>1</button>
+          <button class='2'>2<div class='letters'>ABC</div></button>
+          <button class='3'>3<div class='letters'>DEF</div></button>
+          <button class='4'>4<div class='letters'>GHI</div></button>
+          <button class='5'>5<div class='letters'>JKL</div></button>
+          <button class='6'>6<div class='letters'>MNO</div></button>
+          <button class='7'>7<div class='letters'>PQRS</div></button>
+          <button class='8'>8<div class='letters'>TUV</div></button>
+          <button class='9'>9<div class='letters'>WXYZ</div></button>
+        </div>
+        <button class='zero'>0<i id='phone' class="fa fa-phone" aria-hidden="true"></i></button>
+        <div class='powerBtn'></div>
+        <p class='emergency'>Emergency</p>
+        <p class='cancel'>Cancel</p>
+      </div>
+      <div class='home'></div>
+  </div>
+</div>
+  <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

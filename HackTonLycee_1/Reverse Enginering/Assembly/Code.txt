@@ -1,0 +1,28 @@
+section .data
+    input db 5  
+
+section .bss
+    result resb 1
+
+section .text
+    global _start
+
+_start:
+    mov al, [input] 
+    xor bl, bl 
+    mov cl, al
+
+loop_start:
+    cmp cl, 0 
+    je loop_end
+    add bl, cl
+    dec cl 
+    jmp loop_start 
+
+loop_end:
+    mov [result], bl 
+
+    ; Prepare to exit
+    mov eax, 60   
+    xor edi, edi   
+    syscall

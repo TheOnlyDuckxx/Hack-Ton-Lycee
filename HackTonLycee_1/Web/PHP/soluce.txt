@@ -1,0 +1,4 @@
+PHP :
+Le chemin d'accès était relatif à cause de "./" au début, et il supprimait ../ dans notre chemin d'accès. si on tapait x../y il écrivait xy. Si tu tapais ....// il laissait ../ (ou qqc comme ca)
+
+ https://web3.ctf.yogosha.com/?file=....//flag/flag.txt (bypass le filtre pour LFI)
